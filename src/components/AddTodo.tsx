@@ -16,7 +16,11 @@ const AddTodo: React.FC = () => {
   };
   return (
     <div>
-      <input onChange={(e) => updateInput(e.target.value)} value={input} />
+      <input
+        className={styles.input}
+        onChange={(e) => updateInput(e.target.value)}
+        value={input}
+      />
       <button className={styles.addTodo} onClick={handleAddTodo}>
         Add Todo
       </button>
