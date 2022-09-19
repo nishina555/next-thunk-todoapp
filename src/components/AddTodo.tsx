@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { postTodo } from "../redux/todosSlice";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const AddTodo: React.FC = () => {
   const [input, setInput] = useState("");
