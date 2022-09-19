@@ -9,9 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "husky": "4",
+    "lint-staged": "^13.0.3",
     "next": "12.3.0",
+    "prettier": "^2.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "{src,styles}/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@types/node": "18.7.18",
