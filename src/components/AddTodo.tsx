@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { postTodo } from "../redux/todosSlice";
 import { useDispatch } from "react-redux";
+import styles from "./AddTodo.module.css";
 
 const AddTodo: React.FC = () => {
   const [input, setInput] = useState("");
@@ -16,7 +17,7 @@ const AddTodo: React.FC = () => {
   return (
     <div>
       <input onChange={(e) => updateInput(e.target.value)} value={input} />
-      <button className="add-todo" onClick={handleAddTodo}>
+      <button className={styles.addTodo} onClick={handleAddTodo}>
         Add Todo
       </button>
     </div>

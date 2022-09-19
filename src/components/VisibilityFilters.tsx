@@ -3,9 +3,9 @@ import cx from "classnames";
 import { VISIBILITY_FILTERS } from "../constants";
 import { setFilter } from "../redux/visibilityFilterSlice";
 import { RootState, VisibilityFilterTypes } from "../redux/types";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch } from "../redux/store";
+import styles from "./VisibilityFilters.module.css";
 
 const VisibilityFilters: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -13,7 +13,7 @@ const VisibilityFilters: React.FC = () => {
     (state: RootState) => state.visibilityFilter
   );
   return (
-    <div className="visibility-filters">
+    <>
       {(
         Object.keys(VISIBILITY_FILTERS) as Array<
           keyof typeof VISIBILITY_FILTERS
@@ -24,8 +24,8 @@ const VisibilityFilters: React.FC = () => {
           <span
             key={`visibility-filter-${currentFilter}`}
             className={cx(
-              "filter",
-              currentFilter === activeFilter && "filter--active"
+              styles.filter,
+              currentFilter === activeFilter && styles.filterActive
             )}
             onClick={() => dispatch(setFilter(currentFilter))}
           >
@@ -33,7 +33,7 @@ const VisibilityFilters: React.FC = () => {
           </span>
         );
       })}
-    </div>
+    </>
   );
 };
 

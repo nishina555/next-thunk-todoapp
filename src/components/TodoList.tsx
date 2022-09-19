@@ -4,8 +4,8 @@ import { TodoItem } from "../redux/types";
 import { getTodosByVisibilityFilter } from "../redux/selectors";
 import { RootState } from "../redux/types";
 import { fetchAllTodos } from "../redux/todosSlice";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import styles from "./TodoList.module.css";
 
 const TodoList: React.FC = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const TodoList: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <ul className="todo-list">
+    <ul className={styles.todoList}>
       {todos && todos.length
         ? todos.map((todo: TodoItem, _) => {
             return <Todo key={`todo-${todo.id}`} todo={todo} />;
