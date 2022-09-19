@@ -2,7 +2,7 @@ import React from "react";
 import cx from "classnames";
 import { VISIBILITY_FILTERS } from "../types/constants/visibilityFilterType";
 import { setFilter } from "../reducers/visibilityFilterSlice";
-import { RootState, AppDispatch } from "../store/index";
+import { AppState, AppDispatch } from "../store/index";
 import { VisibilityFilterTypes } from "../types/state/visibilityFilter";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./VisibilityFilters.module.css";
@@ -10,7 +10,7 @@ import styles from "./VisibilityFilters.module.css";
 const VisibilityFilters: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const activeFilter: VisibilityFilterTypes = useSelector(
-    (state: RootState) => state.visibilityFilter
+    (state: AppState) => state.visibilityFilter
   );
   return (
     <>
