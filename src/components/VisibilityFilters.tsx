@@ -1,10 +1,10 @@
 import React from "react";
 import cx from "classnames";
-import { VISIBILITY_FILTERS } from "../constants";
-import { setFilter } from "../redux/visibilityFilterSlice";
-import { RootState, VisibilityFilterTypes } from "../redux/types";
+import { VISIBILITY_FILTERS } from "../types/constants/visibilityFilterType";
+import { setFilter } from "../reducers/visibilityFilterSlice";
+import { RootState, AppDispatch } from "../store/index";
+import { VisibilityFilterTypes } from "../types/state/visibilityFilter";
 import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch } from "../redux/store";
 import styles from "./VisibilityFilters.module.css";
 
 const VisibilityFilters: React.FC = () => {

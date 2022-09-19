@@ -1,5 +1,6 @@
-import { TodoState, VisibilityFilterTypes, TodoItem } from "./types";
-import { VISIBILITY_FILTERS } from "../constants";
+import { VisibilityFilterTypes } from "../types/state/visibilityFilter";
+import { TodoState, TodoItem } from "../types/state/todos";
+import { VISIBILITY_FILTERS } from "../types/constants/visibilityFilterType";
 
 export const getTodosByVisibilityFilter = (
   todos: TodoState,

@@ -1,7 +1,7 @@
 import React from "react";
 import cx from "classnames";
-import { TodoItem } from "../redux/types";
-import { patchTodo } from "../redux/todosSlice";
+import { TodoItem } from "../types/state/todos";
+import { patchTodo } from "../reducers/todosSlice";
 import { useDispatch } from "react-redux";
 import styles from "./Todo.module.css";
 

@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
-import store from "../redux/store";
+import store from "../store/index";
 import "ress";
 
 function MyApp({ Component, pageProps }: AppProps) {

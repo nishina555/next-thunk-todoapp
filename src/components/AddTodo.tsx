@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { postTodo } from "../redux/todosSlice";
+import { postTodo } from "../reducers/todosSlice";
 import { useDispatch } from "react-redux";
 import styles from "./AddTodo.module.css";
 

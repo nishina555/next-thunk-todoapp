@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import Todo from "./Todo";
-import { TodoItem } from "../redux/types";
-import { getTodosByVisibilityFilter } from "../redux/selectors";
-import { RootState } from "../redux/types";
-import { fetchAllTodos } from "../redux/todosSlice";
+import { TodoItem } from "../types/state/todos";
+import { getTodosByVisibilityFilter } from "../selectors/todo";
+import { RootState } from "../store/index";
+import { fetchAllTodos } from "../reducers/todosSlice";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./TodoList.module.css";
 

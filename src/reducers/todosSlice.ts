@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TodoState, TodoItem } from "../redux/types";
+import { TodoState, TodoItem } from "../types/state/todos";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import TodosApiService, { PostTodoItem } from "../api/todos";
-import { RootState } from "../redux/types";
+import { RootState } from "../store/index";
 
 export const fetchAllTodos = createAsyncThunk<{ todos: TodoItem[] }>(
   "todos/fetchAllTodos",
