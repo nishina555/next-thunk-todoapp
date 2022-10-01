@@ -19,7 +19,8 @@ export const postTodo = createAsyncThunk<
     state: AppState;
   }
 >("todos/postTodo", async (content, thunkAPI) => {
-  const { todos } = thunkAPI.getState();
+  const { entities } = thunkAPI.getState();
+  const todos = entities.todos;
   const todo: PostTodoItem = {
     content: content,
     completed: false,

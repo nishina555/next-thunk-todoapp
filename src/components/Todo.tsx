@@ -2,7 +2,7 @@ import React from "react";
 import cx from "classnames";
 import { TodoItem } from "../types/state/todos";
 import { patchTodo } from "../reducers/todosSlice";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../lib/hooks/useAppDispatch";
 import styles from "./Todo.module.css";
 
 interface TodoProps {
@@ -10,7 +10,7 @@ interface TodoProps {
 }
 
 const Todo: React.FC<TodoProps> = ({ todo }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const handleToggleTodo = (todo: TodoItem) => {
     dispatch(patchTodo(todo));
   };

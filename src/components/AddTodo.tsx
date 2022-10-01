@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { postTodo } from "../reducers/todosSlice";
-import { useDispatch } from "react-redux";
 import styles from "./AddTodo.module.css";
+import { useAppDispatch } from "../lib/hooks/useAppDispatch";
 
 const AddTodo: React.FC = () => {
   const [input, setInput] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const updateInput = (input: string) => {
     setInput(input);
   };

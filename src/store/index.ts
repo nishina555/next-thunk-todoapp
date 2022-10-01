@@ -1,8 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "../reducers";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import todosReducer from "../reducers/todosSlice";
+import visibilityFilterReducer from "../reducers/visibilityFilterSlice";
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    entities: combineReducers({
+      todos: todosReducer,
+    }),
+    ui: combineReducers({
+      visibilityFilter: visibilityFilterReducer,
+    }),
+  },
 });
 
 export default store;
