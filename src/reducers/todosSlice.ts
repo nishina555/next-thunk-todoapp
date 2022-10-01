@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TodoState, TodoEntity } from "../types/state/todos";
+import { buildEntities } from "../lib/entitiesBuilder";
+import { Entities } from "../types/state/base";
+import { TodoEntity } from "../types/state/todos";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import TodosApiService, { PostTodoItem } from "../api/todos";
 import { AppState } from "../store/index";
 
-export const fetchAllTodos = createAsyncThunk<{ todos: TodoEntity[] }>(
+export const fetchAllTodos = createAsyncThunk<TodoEntity[]>(
   "todos/fetchAllTodos",
   async () => {
     const data = await TodosApiService.getAll();
-    return { todos: data };
+    return data;
   }
 );
 
@@ -42,8 +44,9 @@ export const patchTodo = createAsyncThunk<{ id: number }, TodoEntity>(
   }
 );
 
-const initialState: TodoState = {
-  todoItems: [],
+const initialState: Entities<TodoEntity> = {
+  allIds: [],
+  byId: {},
 };
 
 const todosSlice = createSlice({
@@ -52,7 +55,9 @@ const todosSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchAllTodos.fulfilled, (state, action) => {
-      state.todoItems = action.payload.todos;
+      const { allIds, byId } = buildEntities<TodoEntity>(action.payload);
+      state.allIds = allIds;
+      state.byId = byId;
     });
     builder.addCase(postTodo.fulfilled, (state, action) => {
       state.todoItems = [
