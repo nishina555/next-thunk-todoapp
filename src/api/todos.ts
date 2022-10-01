@@ -1,7 +1,7 @@
 import axiosInstance from "./index";
-import { TodoItem } from "../redux/types";
+import { TodoEntity } from "../types/state/todos";
 
-export interface PostTodoItem {
+export interface PostTodoParams {
   content: string;
   completed: boolean;
 }
@@ -13,23 +13,29 @@ class Todos {
     });
     return response.data;
   }
-  static async post(todo: PostTodoItem) {
-    await axiosInstance.post(`todos`, todo).catch((error) => {
+  static async post(todo: PostTodoParams) {
+    const response = await axiosInstance.post(`todos`, todo).catch((error) => {
       throw new Error(error.message);
     });
+    return response.data;
   }
-  static async toggle(todo: TodoItem) {
+  static async toggle(todo: TodoEntity) {
     let toggledTodo = Object.assign({}, todo, { completed: !todo.completed });
-    await this.patch(toggledTodo).catch((error) => {
+    const data = await this.patch(toggledTodo).catch((error) => {
       throw new Error(error.message);
     });
+    return data;
   }
-  static async patch(todo: TodoItem) {
-    await axiosInstance.patch(`todos/${todo.id}`, todo).catch((error) => {
-      throw new Error(error.message);
-    });
+
+  static async patch(todo: TodoEntity) {
+    const response = await axiosInstance
+      .patch(`todos/${todo.id}`, todo)
+      .catch((error) => {
+        throw new Error(error.message);
+      });
+    return response.data;
   }
-  static async delete(todo: TodoItem) {
+  static async delete(todo: TodoEntity) {
     await axiosInstance
       .delete(`todos/${todo.id}`, { data: todo })
       .catch((error) => {
