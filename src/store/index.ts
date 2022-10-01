@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import requestReducer from "../reducers/requestsSlice";
 import todosReducer from "../reducers/todosSlice";
 import visibilityFilterReducer from "../reducers/visibilityFilterSlice";
 
@@ -10,6 +11,7 @@ const store = configureStore({
     ui: combineReducers({
       visibilityFilter: visibilityFilterReducer,
     }),
+    requests: requestReducer,
   },
 });
 
