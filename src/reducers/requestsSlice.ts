@@ -1,7 +1,6 @@
 import { ActionReducerMapBuilder, createSlice } from "@reduxjs/toolkit";
 import { RequestStatus } from "../types/constants/requestStatusType";
 import { RequestStatusType } from "../types/state/requests";
-import { getTodos } from "./todosSlice";
 
 type Response = {
   status: RequestStatusType;
@@ -18,21 +17,35 @@ export const requestSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder: ActionReducerMapBuilder<RequestState>) => {
-    builder.addCase(getTodos.pending, (state, action) => {
-      state["getTodos"] = {
-        status: RequestStatus.Request,
-      };
-    });
-    builder.addCase(getTodos.fulfilled, (state, action) => {
-      state["getTodos"] = {
-        status: RequestStatus.Success,
-      };
-    });
-    builder.addCase(getTodos.rejected, (state, action) => {
-      state["getTodos"] = {
-        status: RequestStatus.Failure,
-      };
-    });
+    builder.addMatcher(
+      (action) => action.type.startsWith("getTodos/"),
+      (state, action) => {
+        console.log(action);
+        switch (action.meta.requestStatus) {
+          case "pending":
+            {
+              state["getTodos"] = {
+                status: RequestStatus.Request,
+              };
+            }
+            break;
+          case "fulfilled":
+            {
+              state["getTodos"] = {
+                status: RequestStatus.Success,
+              };
+            }
+            break;
+          case "rejected":
+            {
+              state["getTodos"] = {
+                status: RequestStatus.Failure,
+              };
+            }
+            break;
+        }
+      }
+    );
   },
 });
 
