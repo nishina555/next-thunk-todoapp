@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getTodos } from "./todosSlice";
 
 const initialState = {
-  ["getTodos"]: {
+  getTodos: {
     status: "request",
   },
 };
