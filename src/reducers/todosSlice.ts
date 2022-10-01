@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TodoState, TodoItem } from "../types/state/todos";
+import { TodoState, TodoEntity } from "../types/state/todos";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import TodosApiService, { PostTodoItem } from "../api/todos";
 import { AppState } from "../store/index";
 
-export const fetchAllTodos = createAsyncThunk<{ todos: TodoItem[] }>(
+export const fetchAllTodos = createAsyncThunk<{ todos: TodoEntity[] }>(
   "todos/fetchAllTodos",
   async () => {
     const data = await TodosApiService.getAll();
@@ -32,7 +32,7 @@ export const postTodo = createAsyncThunk<
   };
 });
 
-export const patchTodo = createAsyncThunk<{ id: number }, TodoItem>(
+export const patchTodo = createAsyncThunk<{ id: number }, TodoEntity>(
   "todos/patchTodo",
   async (todo) => {
     await TodosApiService.toggle(todo);
