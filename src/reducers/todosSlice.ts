@@ -6,13 +6,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import TodosApiService, { PostTodoParams } from "../api/todos";
 import { AppState } from "../store/index";
 
-export const fetchAllTodos = createAsyncThunk<TodoEntity[]>(
-  "todos/fetchAllTodos",
-  async () => {
-    const todo = await TodosApiService.getAll();
-    return todo;
-  }
-);
+export const getTodos = createAsyncThunk<TodoEntity[]>("getTodos", async () => {
+  const todo = await TodosApiService.getAll();
+  return todo;
+});
 
 export const postTodo = createAsyncThunk<
   TodoEntity,
@@ -20,7 +17,7 @@ export const postTodo = createAsyncThunk<
   {
     state: AppState;
   }
->("todos/postTodo", async (content) => {
+>("postTodo", async (content) => {
   const todoParams: PostTodoParams = {
     content: content,
     completed: false,
@@ -30,7 +27,7 @@ export const postTodo = createAsyncThunk<
 });
 
 export const patchTodo = createAsyncThunk<TodoEntity, TodoEntity>(
-  "todos/patchTodo",
+  "patchTodo",
   async (todo) => {
     const responsedTodo = await TodosApiService.toggle(todo);
     return responsedTodo;
@@ -47,7 +44,7 @@ const todosSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchAllTodos.fulfilled, (state, action) => {
+    builder.addCase(getTodos.fulfilled, (state, action) => {
       const { allIds, byId } = buildEntities<TodoEntity>(action.payload);
       state.allIds = allIds;
       state.byId = byId;
