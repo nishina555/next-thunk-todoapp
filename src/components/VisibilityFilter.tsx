@@ -1,13 +1,13 @@
 import React from "react";
 import cx from "classnames";
-import { VISIBILITY_FILTERS } from "../types/constants/visibilityFilterType";
+import { VisibilityFilters } from "../types/constants/visibilityFilterType";
 import { setFilter } from "../reducers/visibilityFilterSlice";
 import { AppState, AppDispatch } from "../store/index";
 import { VisibilityFilterTypes } from "../types/state/visibilityFilter";
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./VisibilityFilters.module.css";
+import styles from "./VisibilityFilter.module.css";
 
-const VisibilityFilters: React.FC = () => {
+export const VisibilityFilter: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const activeFilter: VisibilityFilterTypes = useSelector(
     (state: AppState) => state.ui.visibilityFilter
@@ -15,11 +15,9 @@ const VisibilityFilters: React.FC = () => {
   return (
     <>
       {(
-        Object.keys(VISIBILITY_FILTERS) as Array<
-          keyof typeof VISIBILITY_FILTERS
-        >
+        Object.keys(VisibilityFilters) as Array<keyof typeof VisibilityFilters>
       ).map((filterKey) => {
-        const currentFilter = VISIBILITY_FILTERS[filterKey];
+        const currentFilter = VisibilityFilters[filterKey];
         return (
           <span
             key={`visibility-filter-${currentFilter}`}
@@ -37,4 +35,4 @@ const VisibilityFilters: React.FC = () => {
   );
 };
 
-export default VisibilityFilters;
+export default VisibilityFilter;

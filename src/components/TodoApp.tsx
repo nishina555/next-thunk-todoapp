@@ -1,7 +1,7 @@
 import React from "react";
 import AddTodo from "./AddTodo";
 import TodoList from "./TodoList";
-import VisibilityFilters from "./VisibilityFilters";
+import VisibilityFilter from "./VisibilityFilter";
 
 export default function TodoApp() {
   return (
@@ -9,7 +9,7 @@ export default function TodoApp() {
       <h1>Todo List</h1>
       <AddTodo />
       <TodoList />
-      <VisibilityFilters />
+      <VisibilityFilter />
     </div>
   );
 }

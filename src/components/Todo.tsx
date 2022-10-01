@@ -1,17 +1,17 @@
 import React from "react";
 import cx from "classnames";
-import { TodoItem } from "../types/state/todos";
+import { TodoEntity } from "../types/state/todos";
 import { patchTodo } from "../reducers/todosSlice";
 import { useAppDispatch } from "../lib/hooks/useAppDispatch";
 import styles from "./Todo.module.css";
 
 interface TodoProps {
-  todo: TodoItem;
+  todo: TodoEntity;
 }
 
 const Todo: React.FC<TodoProps> = ({ todo }) => {
   const dispatch = useAppDispatch();
-  const handleToggleTodo = (todo: TodoItem) => {
+  const handleToggleTodo = (todo: TodoEntity) => {
     dispatch(patchTodo(todo));
   };
   return (

@@ -1,4 +1,4 @@
-import { VISIBILITY_FILTERS } from "../constants/visibilityFilterType";
+import { VisibilityFilters } from "../constants/visibilityFilterType";
 
 export type VisibilityFilterTypes =
-  typeof VISIBILITY_FILTERS[keyof typeof VISIBILITY_FILTERS];
+  typeof VisibilityFilters[keyof typeof VisibilityFilters];

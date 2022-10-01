@@ -1,18 +1,18 @@
 import { VisibilityFilterTypes } from "../types/state/visibilityFilter";
-import { TodoState, TodoItem } from "../types/state/todos";
-import { VISIBILITY_FILTERS } from "../types/constants/visibilityFilterType";
+import { TodoState, TodoEntity } from "../types/state/todos";
+import { VisibilityFilters } from "../types/constants/visibilityFilterType";
 
 export const selectTodosByVisibilityFilter = (
   todos: TodoState,
   visibilityFilter: VisibilityFilterTypes
-): Array<TodoItem> => {
+): TodoEntity[] => {
   const allTodos = todos.todoItems;
   switch (visibilityFilter) {
-    case VISIBILITY_FILTERS.COMPLETED:
+    case VisibilityFilters.Completed:
       return allTodos.filter((todo) => todo.completed);
-    case VISIBILITY_FILTERS.INCOMPLETE:
+    case VisibilityFilters.Incomplete:
       return allTodos.filter((todo) => !todo.completed);
-    case VISIBILITY_FILTERS.ALL:
+    case VisibilityFilters.All:
     default:
       return allTodos;
   }
