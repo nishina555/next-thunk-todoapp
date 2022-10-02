@@ -1,24 +1,13 @@
-import React, { useEffect } from "react";
+import { FC } from "react";
 import Todo from "./Todo";
 import { TodoEntity } from "../types/state/todos";
-import { selectTodosByVisibilityFilter } from "../selectors/todo";
-import { getTodos } from "../reducers/todosSlice";
-import { useSelector } from "react-redux";
-import { useAppDispatch } from "../lib/hooks/useAppDispatch";
 import styles from "./TodoList.module.css";
 
-export const TodoList: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const todos: TodoEntity[] = useSelector(selectTodosByVisibilityFilter);
-  console.info(todos);
+type Props = {
+  todos: TodoEntity[];
+};
 
-  console.info("render");
-  useEffect(() => {
-    console.info("mount");
-    dispatch(getTodos());
-    return () => console.info("unmount");
-  }, [dispatch]);
-
+export const TodoList: FC<Props> = ({ todos }) => {
   return (
     <ul className={styles.todoList}>
       {todos && todos.length
