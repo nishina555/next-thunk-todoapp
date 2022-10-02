@@ -4,16 +4,8 @@ import {
   createSlice,
 } from "@reduxjs/toolkit";
 import { RequestStatus } from "../types/constants/requestStatusType";
-import { RequestStatusType } from "../types/state/requests";
+import { RequestState } from "../types/state/requests";
 import { getTodos } from "./todosSlice";
-
-type Response = {
-  status: RequestStatusType;
-};
-
-type RequestState = {
-  [typePrefix: string]: Response;
-};
 
 const initialState = {};
 
