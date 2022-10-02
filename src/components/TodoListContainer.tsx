@@ -5,18 +5,19 @@ import { getTodos } from "../reducers/todosSlice";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../lib/hooks/useAppDispatch";
 import { TodoList } from "./TodoList";
+import { selectHasRequestCompleted } from "../selectors/requests";
+import { Loading } from "./shared/Loading";
 
 export const TodoListContainer: FC = () => {
   const dispatch = useAppDispatch();
   const todos: TodoEntity[] = useSelector(selectTodosByVisibilityFilter);
-  console.info(todos);
-
-  console.info("render");
+  const hasRequestCompleted = useSelector(
+    selectHasRequestCompleted(getTodos.typePrefix)
+  );
   useEffect(() => {
-    console.info("mount");
     dispatch(getTodos());
-    return () => console.info("unmount");
   }, [dispatch]);
 
-  return <TodoList todos={todos} />;
+  return hasRequestCompleted ? <TodoList todos={todos} /> : <Loading />;
+  // return <TodoList todos={todos} />;
 };

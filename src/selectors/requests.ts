@@ -11,13 +11,13 @@ const selectRequest = (actionType: string) =>
 // const selectRequestStatus = (actionType: string) =>
 //   createSelector([selectRequests], (requests) => requests[actionType]?.status);
 
-export const hasRequestStarted = (actionType: string) =>
+export const selectHasRequestStarted = (actionType: string) =>
   createSelector(
     [selectRequest(actionType)],
     (request) => request.status !== undefined
   );
 
-export const hasRequestCompleted = (actionType: string) =>
+export const selectHasRequestCompleted = (actionType: string) =>
   createSelector([selectRequest(actionType)], (request) => {
     const complatedRequestStatuses = [
       RequestStatus.Failure,
