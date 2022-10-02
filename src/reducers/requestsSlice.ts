@@ -32,7 +32,7 @@ const createRequestAsyncThunkReducer = (
           break;
         }
         case "rejected": {
-          state[getTodos.typePrefix] = {
+          state[targetRequestThunk.typePrefix] = {
             status: RequestStatus.Failure,
           };
           break;

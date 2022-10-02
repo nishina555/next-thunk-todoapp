@@ -14,6 +14,7 @@ export const AddTodo: React.FC = () => {
     dispatch(postTodo(input));
     setInput("");
   };
+
   return (
     <div>
       <input
