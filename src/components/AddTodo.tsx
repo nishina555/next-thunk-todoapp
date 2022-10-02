@@ -3,7 +3,7 @@ import { postTodo } from "../reducers/todosSlice";
 import styles from "./AddTodo.module.css";
 import { useAppDispatch } from "../lib/hooks/useAppDispatch";
 
-const AddTodo: React.FC = () => {
+export const AddTodo: React.FC = () => {
   const [input, setInput] = useState("");
   const dispatch = useAppDispatch();
   const updateInput = (input: string) => {
@@ -27,5 +27,3 @@ const AddTodo: React.FC = () => {
     </div>
   );
 };
-
-export default AddTodo;

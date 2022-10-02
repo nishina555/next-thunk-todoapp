@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "../lib/hooks/useAppDispatch";
 import styles from "./TodoList.module.css";
 
-const TodoList: React.FC = () => {
+export const TodoList: React.FC = () => {
   const dispatch = useAppDispatch();
   const todos: TodoEntity[] = useSelector(selectTodosByVisibilityFilter);
   console.info(todos);
@@ -29,5 +29,3 @@ const TodoList: React.FC = () => {
     </ul>
   );
 };
-
-export default TodoList;
