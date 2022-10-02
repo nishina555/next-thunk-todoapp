@@ -9,7 +9,7 @@ interface TodoProps {
   todo: TodoEntity;
 }
 
-const Todo: React.FC<TodoProps> = ({ todo }) => {
+export const Todo: React.FC<TodoProps> = ({ todo }) => {
   const dispatch = useAppDispatch();
   const handleToggleTodo = (todo: TodoEntity) => {
     dispatch(patchTodo(todo));
@@ -23,5 +23,3 @@ const Todo: React.FC<TodoProps> = ({ todo }) => {
     </li>
   );
 };
-
-export default Todo;

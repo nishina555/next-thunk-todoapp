@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Todo from "./Todo";
+import { Todo } from "./Todo";
 import { TodoEntity } from "../types/state/todos";
 import styles from "./TodoList.module.css";
 
