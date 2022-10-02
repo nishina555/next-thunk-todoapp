@@ -9,7 +9,7 @@ const selectRequest = (actionType: string) =>
   createSelector([selectRequests], (requests) => requests[actionType] || {});
 
 // リクエストの状態を取得
-const selectRequestStatus = (actionType: string) =>
+export const selectRequestStatus = (actionType: string) =>
   createSelector([selectRequest(actionType)], (request) => request?.status);
 
 // リクエスト中の場合trueを返す
