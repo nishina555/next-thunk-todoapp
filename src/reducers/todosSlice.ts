@@ -4,27 +4,23 @@ import { Entities } from "../types/state/base";
 import { TodoEntity } from "../types/state/todos";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import TodosApiService, { PostTodoParams } from "../api/todos";
-import { AppState } from "../store/index";
 
 export const getTodos = createAsyncThunk<TodoEntity[]>("getTodos", async () => {
   const todo = await TodosApiService.getAll();
   return todo;
 });
 
-export const postTodo = createAsyncThunk<
-  TodoEntity,
-  string,
-  {
-    state: AppState;
+export const postTodo = createAsyncThunk<TodoEntity, string>(
+  "postTodo",
+  async (content) => {
+    const todoParams: PostTodoParams = {
+      content: content,
+      completed: false,
+    };
+    const todo = await TodosApiService.post(todoParams);
+    return todo;
   }
->("postTodo", async (content) => {
-  const todoParams: PostTodoParams = {
-    content: content,
-    completed: false,
-  };
-  const todo = await TodosApiService.post(todoParams);
-  return todo;
-});
+);
 
 export const patchTodo = createAsyncThunk<TodoEntity, TodoEntity>(
   "patchTodo",
