@@ -9,15 +9,12 @@ const selectRequest = (actionType: string) =>
   createSelector([selectRequests], (requests) => requests[actionType] || {});
 
 const selectRequestStatus = (actionType: string) =>
-  createSelector(
-    [selectRequests],
-    (requests) => requests[actionType]?.status ?? RequestStatus.None
-  );
+  createSelector([selectRequest(actionType)], (request) => request?.status);
 
 export const selectHasRequestStarted = (actionType: string) =>
   createSelector(
     [selectRequest(actionType)],
-    (request) => request.status !== undefined
+    (request) => request?.status !== undefined
   );
 
 export const selectHasRequestCompleted = (actionType: string) =>
