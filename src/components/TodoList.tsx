@@ -10,8 +10,10 @@ import styles from "./TodoList.module.css";
 const TodoList: React.FC = () => {
   const dispatch = useAppDispatch();
   const todos: TodoEntity[] = useSelector(selectTodosByVisibilityFilter);
+  console.log(todos);
 
   useEffect(() => {
+    console.log("useEffect");
     dispatch(getTodos());
   }, [dispatch]);
 
