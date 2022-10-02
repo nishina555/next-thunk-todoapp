@@ -8,8 +8,11 @@ const selectRequests = (state: AppState): RequestState => state.requests;
 const selectRequest = (actionType: string) =>
   createSelector([selectRequests], (requests) => requests[actionType] || {});
 
-// const selectRequestStatus = (actionType: string) =>
-//   createSelector([selectRequests], (requests) => requests[actionType]?.status);
+const selectRequestStatus = (actionType: string) =>
+  createSelector(
+    [selectRequests],
+    (requests) => requests[actionType]?.status ?? RequestStatus.None
+  );
 
 export const selectHasRequestStarted = (actionType: string) =>
   createSelector(
