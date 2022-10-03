@@ -1,5 +1,5 @@
 import { FC } from "react";
-// import loadingCircleIcon from "../../../public/loadingCircleGray.png";
+// import loadingCircleIcon from "../../../public/images/loadingCircleGray.png";
 import styles from "./Loading.module.css";
 
 // export const Loading: FC = () => {
@@ -21,7 +21,7 @@ import styles from "./Loading.module.css";
 export const Loading: FC = () => {
   return (
     <div className={styles.container}>
-      <img className={styles.icon} src="loading.svg" />
+      <img className={styles.icon} src="images/loading.svg" />
     </div>
   );
 };
