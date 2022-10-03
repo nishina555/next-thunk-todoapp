@@ -8,40 +8,11 @@ const selectRequests = (state: AppState): RequestState => state.requests;
 const selectRequest = (actionType: string) =>
   createSelector([selectRequests], (requests) => requests[actionType] || {});
 
-// リクエストの状態を取得
+// 非同期処理の実行状況を取得するSelector
 export const selectRequestStatus = (actionType: string) =>
   createSelector([selectRequest(actionType)], (request) => request?.status);
 
-// リクエスト中の場合trueを返す
-export const selectHasRequestStarted = (actionType: string) =>
-  createSelector(
-    [selectRequest(actionType)],
-    (request) => request?.status === RequestStatus.Request
-  );
-
-// リクエスト成功の場合trueを返す
-export const selectHasRequestSucceeded = (actionType: string) =>
-  createSelector(
-    [selectRequest(actionType)],
-    (request) => request?.status === RequestStatus.Success
-  );
-
-// リクエスト失敗の場合trueを返す
-export const selectHasRequestFailed = (actionType: string) =>
-  createSelector(
-    [selectRequest(actionType)],
-    (request) => request?.status === RequestStatus.Failure
-  );
-
-// リクエスト未完了（未実行、実行中）の場合trueを返す
-export const selectHasRequestNotDone = (actionType: string) =>
-  createSelector(
-    [selectRequest(actionType)],
-    (request) =>
-      request?.status === RequestStatus.Request || request?.status === undefined
-  );
-
-// リクエスト完了の場合trueを返す（リクエストの成否は問わない）
+// 実行完了（成功もしくは失敗）の場合trueを返すSelector
 export const selectHasRequestDone = (actionType: string) =>
   createSelector([selectRequest(actionType)], (request) => {
     const complatedRequestStatuses = [

@@ -6,9 +6,9 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "../lib/hooks/useAppDispatch";
 import { TodoList } from "./TodoList";
 import { Loading } from "./shared/Loading";
-import { RequestStatus } from "../types/constants/requestStatusType";
-import { selectRequestStatus } from "../selectors/requests";
-import { Failure } from "./shared/Failure";
+// import { RequestStatus } from "../types/constants/requestStatusType";
+// import { selectRequestStatus } from "../selectors/requests";
+// import { Failure } from "./shared/Failure";
 import { selectHasRequestDone } from "../selectors/requests";
 
 export const TodoListContainer: FC = () => {
