@@ -5,43 +5,37 @@ import { getTodos } from "../reducers/todosSlice";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../lib/hooks/useAppDispatch";
 import { TodoList } from "./TodoList";
-// import { selectHasRequestDone } from "../selectors/requests";
-// import { selectRequestStatus } from "../selectors/requests";
-// import { RequestStatus } from "../types/constants/requestStatusType";
 import { Loading } from "./shared/Loading";
+import { RequestStatus } from "../types/constants/requestStatusType";
+import { selectRequestStatus } from "../selectors/requests";
 import { Failure } from "./shared/Failure";
-import {
-  selectHasRequestFailed,
-  selectHasRequestSucceeded,
-} from "../selectors/requests";
+import { selectHasRequestDone } from "../selectors/requests";
 
 export const TodoListContainer: FC = () => {
   const dispatch = useAppDispatch();
   const todos: TodoEntity[] = useSelector(selectTodosByVisibilityFilter);
-  // const hasRequestDone = useSelector(
-  //   selectHasRequestDone(getTodos.typePrefix)
-  // );
-  // const requestStatus = useSelector(selectRequestStatus(getTodos.typePrefix));
-  const hasRequestFailed = useSelector(
-    selectHasRequestFailed(getTodos.typePrefix)
-  );
-  const hasRequestSucceeded = useSelector(
-    selectHasRequestSucceeded(getTodos.typePrefix)
-  );
-
   useEffect(() => {
     dispatch(getTodos());
   }, [dispatch]);
 
-  // if (requestStatus === RequestStatus.Failure) return <Failure />;
-
+  // パターン1: 実行中と失敗はローディング状態にする
+  // const requestStatus = useSelector(selectRequestStatus(getTodos.typePrefix));
   // return requestStatus === RequestStatus.Success ? (
   //   <TodoList todos={todos} />
   // ) : (
   //   <Loading />
   // );
 
-  if (hasRequestFailed) return <Failure />;
+  // パターン2: 実行中はローディング状態、失敗は失敗画面を表示する
+  // const requestStatus = useSelector(selectRequestStatus(getTodos.typePrefix));
+  // if (requestStatus === RequestStatus.Failure) return <Failure />;
+  // return requestStatus === RequestStatus.Success ? (
+  //   <TodoList todos={todos} />
+  // ) : (
+  //   <Loading />
+  // );
 
-  return hasRequestSucceeded ? <TodoList todos={todos} /> : <Loading />;
+  // パターン3: 実行中はローディング状態、実行完了（失敗もしくは成功）で画面を表示する
+  const hasRequestDone = useSelector(selectHasRequestDone(getTodos.typePrefix));
+  return hasRequestDone ? <TodoList todos={todos} /> : <Loading />;
 };
